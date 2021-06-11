@@ -5,18 +5,20 @@ const path = require('path');
 const MTProto = require('@mtproto/core');
 const { sleep } = require('@mtproto/core/src/utils/common');
 
+const { isEmpty } = require('./helpers');
+
 const config = { env: process.env };
 config.debug = (config.env.NODE_ENV==='production')?false:true;
 config.env.AUTH_DELAY = config.env.AUTH_DELAY || 300;
 config.authPath = path.join(__dirname, '../_authdata', './'+config.env.TG_USER_PHONE+'.json');
+config.test = (isEmpty(config.env.TG_USER_PHONE))?true:false;
 
 class API {
   constructor() {
     this.mtproto = new MTProto({
       api_id: config.env.TG_API_ID,
       api_hash: config.env.TG_API_HASH,
-      //test: false,
-      //customLocalStorage: globalThis.localStorage,
+      test: config.test,
       storageOptions: {
         path: config.authPath
       },
@@ -38,7 +40,7 @@ class API {
 
       return result;
     } catch (error) {
-      console.log(`${method} error:`, error);
+      console.error(`${method} error:`, error);
 
       const { error_code, error_message } = error;
 
@@ -51,7 +53,7 @@ class API {
         return this.call(method, params, options);
       }
 
-      if (error_code === 303) {
+      if (error_code === 303 || error_code === 500) {
         const [type, dcIdAsString] = error_message.split('_MIGRATE_');
 
         const dcId = Number(dcIdAsString);
