@@ -10,8 +10,34 @@
     "pm2": "pm2 start src/index.js --name mtpclient --max-memory-restart 250M --node-args='--max_old_space_size=8196' -f",
     "pm": "pm2 start ecosystem.config.js"
   },
-  "author": "Saturnych",
-  "license": "ISC",
+  "args": [
+    "--max_old_space_size=8196 --stack-size=1024"
+  ],
+  "nodemonConfig": {
+    "legacyWatch": true,
+    "verbose": true,
+    "ignore": [
+      "authdata",
+      "logs",
+      "node_modules"
+    ],
+    "ignoreRoot": [
+      "authdata",
+      "logs",
+      "node_modules"
+    ],
+    "delay": "2500"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saturnych/mtpclient.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Saturnych/mtpclient/issues"
+  },
+  "homepage": "https://saturnych.ru",
+  "author": "Denis Glebko",
+  "license": "CC0-1.0",
   "dependencies": {
     "@mtproto/core": "^6.0.1",
     "dotenv": "^10.0.0",
