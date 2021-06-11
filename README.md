@@ -1,5 +1,5 @@
 # mtpclient
-# test mtproto telegram automatic client with monitoring
+# @mtproto/core telegram automatic client with monitoring
 
 # rename .env.expample to .env and edit API & PHONE lines
 
