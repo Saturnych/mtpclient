@@ -1,0 +1,23 @@
+{
+  "name": "mtpclient",
+  "version": "0.0.1",
+  "description": "test mtproto telegram automatic client with monitoring",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon src/index",
+    "start": "nodemon --verbose --max_old_space_size=8196 --stack-size=1024 src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pm2": "pm2 start src/index.js --name mtpclient --max-memory-restart 250M --node-args='--max_old_space_size=8196' -f",
+    "pm": "pm2 start ecosystem.config.js"
+  },
+  "author": "Saturnych",
+  "license": "ISC",
+  "dependencies": {
+    "@mtproto/core": "^6.0.1",
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "pm2": "^5.1.0",
+    "readline": "^1.3.0"
+  }
+}

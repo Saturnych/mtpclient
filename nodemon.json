@@ -1,0 +1,7 @@
+{
+    "legacyWatch": true,
+    "verbose": true,
+    "ignore": ["_authdata", "logs", "node_modules"],
+    "ignoreRoot": ["_authdata", "logs", "node_modules"],
+    "delay": "2500"
+}

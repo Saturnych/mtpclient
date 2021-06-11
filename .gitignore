@@ -1,0 +1,9 @@
+.cache
+.env
+.git
+_authdata/
+logs/
+node_modules/
+tmp/
+*.log
+*.lock
